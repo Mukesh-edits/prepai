@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import axios from '../utils/axios';
 import { useAuth } from '../context/AuthContext';
 
-const Login = () => {
-  const [form, setForm] = useState({ email: '', password: '' });
+const Signup = () => {
+  const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
@@ -20,7 +20,7 @@ const Login = () => {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.post('/auth/login', form);
+      const res = await axios.post('/auth/register', form);
       login(res.data.user, res.data.token);
       navigate('/dashboard');
     } catch (err) {
@@ -34,12 +34,10 @@ const Login = () => {
     <div className="animated-bg min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
 
       {/* Background blobs */}
-      <div className="absolute top-20 left-20 w-72 h-72 rounded-full blur-3xl opacity-10"
-        style={{ background: 'radial-gradient(circle, #6366f1, transparent)' }} />
-      <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full blur-3xl opacity-10"
+      <div className="absolute top-20 right-20 w-72 h-72 rounded-full blur-3xl opacity-10"
         style={{ background: 'radial-gradient(circle, #8b5cf6, transparent)' }} />
-      <div className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full blur-3xl opacity-5"
-        style={{ background: 'radial-gradient(circle, #06b6d4, transparent)' }} />
+      <div className="absolute bottom-20 left-20 w-96 h-96 rounded-full blur-3xl opacity-10"
+        style={{ background: 'radial-gradient(circle, #6366f1, transparent)' }} />
 
       <div className="w-full max-w-md relative z-10">
 
@@ -73,8 +71,8 @@ const Login = () => {
             backdropFilter: 'blur(20px)',
           }}
         >
-          <h1 className="text-2xl font-black text-white mb-1">Welcome back 👋</h1>
-          <p className="text-gray-400 text-sm mb-6">Login to continue your practice</p>
+          <h1 className="text-2xl font-black text-white mb-1">Create account ✨</h1>
+          <p className="text-gray-400 text-sm mb-6">Start your interview journey today</p>
 
           {error && (
             <motion.div
@@ -87,6 +85,18 @@ const Login = () => {
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="text-gray-400 text-sm mb-2 block font-medium">Full Name</label>
+              <input
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                required
+                className="w-full bg-[#0f0f1a] border border-gray-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                placeholder="Mukesh Kumar"
+              />
+            </div>
             <div>
               <label className="text-gray-400 text-sm mb-2 block font-medium">Email Address</label>
               <input
@@ -122,14 +132,14 @@ const Login = () => {
                 boxShadow: '0 0 20px rgba(99,102,241,0.3)',
               }}
             >
-              {loading ? '⏳ Logging in...' : '🚀 Login'}
+              {loading ? '⏳ Creating account...' : '✨ Create Account'}
             </motion.button>
           </form>
 
           <p className="text-gray-400 text-center mt-6 text-sm">
-            Don't have an account?{' '}
-            <Link to="/signup" className="text-indigo-400 hover:text-indigo-300 font-semibold">
-              Sign up free
+            Already have an account?{' '}
+            <Link to="/login" className="text-indigo-400 hover:text-indigo-300 font-semibold">
+              Login here
             </Link>
           </p>
         </motion.div>
@@ -148,4 +158,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
