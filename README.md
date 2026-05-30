@@ -1,6 +1,6 @@
 # 🤖 PrepAI
 
-> AI-Powered Mock Interview Coach — upload your resume, get a personalized interview, and track your growth
+> AI-Powered Mock Interview Coach — upload your resume, get a personalized interview, and track your growth....
 
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)](https://reactjs.org)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
